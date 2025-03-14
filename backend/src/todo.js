@@ -11,7 +11,7 @@ function updateTodo(todos, id, updatedText) {
         todo.id === id ? { ...todo, text: updatedText } : todo
     );
 }
-function getTodos() {
+function getTodos(todos) {
     return todos;
 }
 

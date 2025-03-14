@@ -35,15 +35,14 @@ describe("Todo Functions - Unit Tests", () => {
         expect(todos[0].text).toBe("Enhance test coverage reports");
     });
 
-    test("should fetch all tasks", () => {
-        const todo1 = { id: 505, text: "Push project updates to repository" };
-        const todo2 = { id: 606, text: "Document test results in report" };
-        todos = [todo1, todo2];
+    test("should not modify a task if ID does not exist", () => {
+        const todo = { id: 808, text: "Optimize server performance" };
+        todos = [todo];
 
-        const result = getTodos(todos);
+        const updatedTodos = updateTodo(todos, 999, "Optimize API response time");
 
-        expect(result).toHaveLength(2);
-        expect(result).toEqual(todos);
+        expect(updatedTodos).toHaveLength(1);
+        expect(updatedTodos[0].text).toBe("Optimize server performance");
     });
 
 });

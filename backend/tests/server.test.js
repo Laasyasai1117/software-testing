@@ -26,4 +26,12 @@ describe("Todo API - Integration Tests", () => {
         expect(response.status).toBe(404);
         expect(response.body.error).toBe("Todo not found");
     });
+
+    test("PUT /api/todos/:id should modify an existing task", async () => {
+        const updatedText = { text: "Enhance CI/CD workflow" };
+        const response = await request(app).put(`/api/todos/${todoId}`).send(updatedText);
+
+        expect(response.status).toBe(200);
+        expect(response.body.message).toBe("Todo updated");
+    });
 });

@@ -1,4 +1,4 @@
-const { addTodo, deleteTodo } = require("../src/todo");
+const { addTodo, deleteTodo, updateTodo } = require("../src/todo");
 
 describe("Todo Functions - Unit Tests", () => {
     let todos;

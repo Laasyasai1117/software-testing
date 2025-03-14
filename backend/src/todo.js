@@ -11,10 +11,14 @@ function updateTodo(todos, id, updatedText) {
         todo.id === id ? { ...todo, text: updatedText } : todo
     );
 }
+function getTodos() {
+    return todos;
+}
 
 
 module.exports = { 
     addTodo, 
     deleteTodo,  
     updateTodo,
+    getTodos
 };

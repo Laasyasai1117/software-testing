@@ -1,4 +1,4 @@
-const { addTodo, deleteTodo, updateTodo } = require("../src/todo");
+const { addTodo, deleteTodo, updateTodo, getTodos } = require("../src/todo");
 
 describe("Todo Functions - Unit Tests", () => {
     let todos;
@@ -35,6 +35,27 @@ describe("Todo Functions - Unit Tests", () => {
         expect(todos[0].text).toBe("Enhance test coverage reports");
     });
 
+    test("should fetch all tasks", () => {
+        const todo1 = { id: 505, text: "Push project updates to repository" };
+        const todo2 = { id: 606, text: "Document test results in report" };
+        todos = [todo1, todo2];
+
+        const result = getTodos(todos);
+
+        expect(result).toHaveLength(2);
+        expect(result).toEqual(todos);
+    });
+
+    test("should not remove a task if ID is invalid", () => {
+        const todo = { id: 707, text: "Fix pipeline errors" };
+        todos = [todo];
+
+        const updatedTodos = deleteTodo(todos, 999);
+
+        expect(updatedTodos).toHaveLength(1);
+        expect(updatedTodos).toEqual(todos);
+    });
+
     test("should not modify a task if ID does not exist", () => {
         const todo = { id: 808, text: "Optimize server performance" };
         todos = [todo];
@@ -44,5 +65,4 @@ describe("Todo Functions - Unit Tests", () => {
         expect(updatedTodos).toHaveLength(1);
         expect(updatedTodos[0].text).toBe("Optimize server performance");
     });
-
 });

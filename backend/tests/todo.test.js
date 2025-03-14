@@ -26,4 +26,24 @@ describe("Todo Functions - Unit Tests", () => {
         expect(todos).not.toContain(todo1);
     });
 
+    test("should modify a task by ID", () => {
+        const todo = { id: 404, text: "Review test coverage" };
+        todos = [todo];
+
+        todos = updateTodo(todos, 404, "Enhance test coverage reports");
+
+        expect(todos[0].text).toBe("Enhance test coverage reports");
+    });
+
+    test("should fetch all tasks", () => {
+        const todo1 = { id: 505, text: "Push project updates to repository" };
+        const todo2 = { id: 606, text: "Document test results in report" };
+        todos = [todo1, todo2];
+
+        const result = getTodos(todos);
+
+        expect(result).toHaveLength(2);
+        expect(result).toEqual(todos);
+    });
+
 });
